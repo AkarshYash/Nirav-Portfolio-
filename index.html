@@ -838,3 +838,71 @@
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name" required>
                         </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Immediate inline fix for animations
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Animate ALL stat counters
+                const allStats = document.querySelectorAll('.stat-number');
+                allStats.forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-target'));
+                    let current = 0;
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            stat.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.ceil(current);
+                        }
+                    }, 30);
+                });
+                
+                // Start typing animation
+                const typingText = document.querySelector('.typing-text');
+                if (typingText) {
+                    const titles = [
+                        'Senior Full Stack Engineer',
+                        'Technical Lead & Architect', 
+                        'Healthcare Technology Expert',
+                        'AI/ML Solutions Specialist',
+                        'Cloud Infrastructure Expert'
+                    ];
+                    let titleIndex = 0;
+                    let charIndex = 0;
+                    let isDeleting = false;
+                    
+                    function typeTitle() {
+                        const currentTitle = titles[titleIndex];
+                        
+                        if (isDeleting) {
+                            typingText.textContent = currentTitle.substring(0, charIndex - 1);
+                            charIndex--;
+                        } else {
+                            typingText.textContent = currentTitle.substring(0, charIndex + 1);
+                            charIndex++;
+                        }
+                        
+                        let speed = isDeleting ? 50 : 100;
+                        
+                        if (!isDeleting && charIndex === currentTitle.length) {
+                            speed = 2000;
+                            isDeleting = true;
+                        } else if (isDeleting && charIndex === 0) {
+                            isDeleting = false;
+                            titleIndex = (titleIndex + 1) % titles.length;
+                        }
+                        
+                        setTimeout(typeTitle, speed);
+                    }
+                    
+                    typeTitle();
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
