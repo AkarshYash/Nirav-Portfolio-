@@ -1,0 +1,33 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Professional 3D animated portfolio website for Senior Full Stack Engineer",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . -l 3000",
+    "build": "echo 'No build required for static site'",
+    "deploy:netlify": "netlify deploy --prod",
+    "deploy:vercel": "vercel --prod",
+    "test": "npx lighthouse http://localhost:3000 --view"
+  },
+  "keywords": [
+    "portfolio",
+    "3d-animations",
+    "webgl",
+    "canvas",
+    "responsive",
+    "dark-theme",
+    "professional",
+    "developer-portfolio"
+  ],
+  "author": "Nirav Patel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/portfolio.git"
+  },
+  "homepage": "https://yourusername.github.io",
+  "devDependencies": {},
+  "dependencies": {}
+}
