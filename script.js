@@ -122,7 +122,8 @@ class TypingAnimation {
         this.charIndex = 0;
         this.isDeleting = false;
         
-        this.type();
+        // Start typing immediately
+        setTimeout(() => this.type(), 500);
     }
     
     type() {
@@ -423,8 +424,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Card Tilt Effects
     initCardTilt();
     
-    // Setup Intersection Observers
-    const animatedElements = document.querySelectorAll('.skill-category, .stat-number, .timeline-item, .project-card');
+    // Animate counters immediately for hero stats
+    const heroStats = document.querySelectorAll('.hero-stats .stat-number');
+    heroStats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        animateCounter(stat, target);
+    });
+    
+    // Setup Intersection Observers for other elements
+    const animatedElements = document.querySelectorAll('.skill-category, .timeline-item, .project-card');
     animatedElements.forEach(el => observer.observe(el));
     
     // Add CSS animation classes
